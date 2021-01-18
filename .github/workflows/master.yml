@@ -10,7 +10,6 @@ jobs:
     steps:
       - name: Compile
         run: |
-          echo "SP_TIME=vtk-$(date +''%Y%m%d%H'')" >> $GITHUB_ENV
           sudo apt update && sudo apt install gcc g++ gfortran libglu1-mesa-dev freeglut3-dev mesa-common-dev
           wget https://www.vtk.org/files/release/9.0/VTK-9.0.1.tar.gz
           tar -xf VTK-9.0.1.tar.gz
@@ -31,14 +30,13 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: VTK-9.0.1.tar.gz
           asset_name: VTK-9.0.1.tar.gz
-          tag: ${{ env.SP_TIME }}
+          tag: latest
           overwrite: true
   v82:
     runs-on: ubuntu-20.04
     steps:
       - name: Compile
         run: |
-          echo "SP_TIME=vtk-$(date +''%Y%m%d%H'')" >> $GITHUB_ENV
           sudo apt update && sudo apt install gcc g++ gfortran libglu1-mesa-dev freeglut3-dev mesa-common-dev
           wget https://www.vtk.org/files/release/8.2/VTK-8.2.0.tar.gz
           tar -xf VTK-8.2.0.tar.gz
@@ -59,5 +57,5 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: VTK-8.2.0.tar.gz
           asset_name: VTK-8.2.0.tar.gz
-          tag: ${{ env.SP_TIME }}
+          tag: latest
           overwrite: true

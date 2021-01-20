@@ -77,17 +77,17 @@ jobs:
           sed -i 's/# NO_LAPACKE = 1/NO_LAPACKE = 1/g' Makefile.rule
           sed -i 's/# GEMM_MULTITHREAD_THRESHOLD = 4/GEMM_MULTITHREAD_THRESHOLD = 64/g' Makefile.rule
           make
-          tar -cvzf ../OpenBLAS.0.3.13.tar.gz lib*.a
+          tar -cvzf ../OpenBLAS-0.3.13.tar.gz lib*.a
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
-          name: OpenBLAS.0.3.13
-          path: OpenBLAS.0.3.13.tar.gz
+          name: OpenBLAS-0.3.13
+          path: OpenBLAS-0.3.13.tar.gz
       - name: Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: OpenBLAS.0.3.13.tar.gz
-          asset_name: OpenBLAS.0.3.13.tar.gz
+          file: OpenBLAS-0.3.13.tar.gz
+          asset_name: OpenBLAS-0.3.13.tar.gz
           tag: latest
           overwrite: true

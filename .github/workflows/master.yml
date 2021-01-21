@@ -97,9 +97,9 @@ jobs:
           wget https://github.com/xianyi/OpenBLAS/releases/download/v0.3.13/OpenBLAS-0.3.13.tar.gz
           tar -xf OpenBLAS-0.3.13.tar.gz && rm OpenBLAS-0.3.13.tar.gz && cd OpenBLAS-0.3.13
           sed -i '~' 's/# DYNAMIC_ARCH = 1/DYNAMIC_ARCH = 1/g' Makefile.rule
-          sed -i '~' 's/# CC = gcc/CC = gcc/g' Makefile.rule
-          sed -i '~' 's/# FC = gfortran/FC = gfortran/g' Makefile.rule
-          sed -i '~' 's/# HOSTCC = gcc/HOSTCC = gcc/g' Makefile.rule
+          sed -i '~' 's/# CC = gcc-9/CC = gcc-9/g' Makefile.rule
+          sed -i '~' 's/# FC = gfortran-9/FC = gfortran-9/g' Makefile.rule
+          sed -i '~' 's/# HOSTCC = gcc-9/HOSTCC = gcc-9/g' Makefile.rule
           sed -i '~' 's/# BINARY=64/BINARY=64/g' Makefile.rule
           sed -i '~' 's/# USE_THREAD = 0/USE_THREAD = 1/g' Makefile.rule
           sed -i '~' 's/# USE_OPENMP = 1/USE_OPENMP = 1/g' Makefile.rule

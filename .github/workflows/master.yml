@@ -13,7 +13,7 @@ jobs:
           C:/msys64/usr/bin/wget.exe https://www.vtk.org/files/release/8.2/VTK-8.2.0.tar.gz
           tar -xf VTK-8.2.0.tar.gz
           del VTK-8.2.0.tar.gz
-          dir VTK-build
+          mkdir VTK-build
           cd VTK-build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=../VTK-out ../VTK-8.2.0
           make install -j4

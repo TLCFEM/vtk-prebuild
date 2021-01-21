@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Compile
         run: |
-          sudo apt install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+          sudo apt update && sudo apt install libglu1-mesa-dev freeglut3-dev mesa-common-dev
           wget https://www.vtk.org/files/release/9.0/VTK-9.0.1.tar.gz
           tar -xf VTK-9.0.1.tar.gz && rm VTK-9.0.1.tar.gz
           mkdir VTK-build && cd VTK-build
@@ -35,7 +35,7 @@ jobs:
     steps:
       - name: Compile
         run: |
-          sudo apt install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+          sudo apt update && sudo apt install libglu1-mesa-dev freeglut3-dev mesa-common-dev
           wget https://www.vtk.org/files/release/8.2/VTK-8.2.0.tar.gz
           tar -xf VTK-8.2.0.tar.gz && rm VTK-8.2.0.tar.gz
           mkdir VTK-build && cd VTK-build
@@ -60,7 +60,7 @@ jobs:
     steps:
       - name: Compile
         run: |
-          sudo brew install glfw3 glew
+          sudo brew update && sudo brew install glfw3 glew
           wget https://www.vtk.org/files/release/9.0/VTK-9.0.1.tar.gz
           tar -xf VTK-9.0.1.tar.gz && rm VTK-9.0.1.tar.gz
           mkdir VTK-build && cd VTK-build
@@ -85,7 +85,7 @@ jobs:
     steps:
       - name: Compile
         run: |
-          sudo brew install glfw3 glew
+          sudo brew update && sudo brew install glfw3 glew
           wget https://www.vtk.org/files/release/8.2/VTK-8.2.0.tar.gz
           tar -xf VTK-8.2.0.tar.gz && rm VTK-8.2.0.tar.gz
           mkdir VTK-build && cd VTK-build

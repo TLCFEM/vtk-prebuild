@@ -56,7 +56,7 @@ jobs:
           tag: latest
           overwrite: true
   v90-macos:
-    runs-on: macos-11.0
+    runs-on: macos-latest
     steps:
       - name: Compile
         run: |
@@ -81,7 +81,7 @@ jobs:
           tag: latest
           overwrite: true
   v82-macos:
-    runs-on: macos-11.0
+    runs-on: macos-latest
     steps:
       - name: Compile
         run: |
@@ -137,7 +137,7 @@ jobs:
           tag: latest
           overwrite: true
   openblas-macos:
-    runs-on: macos-11.0
+    runs-on: macos-latest
     steps:
       - name: Compile
         run: |

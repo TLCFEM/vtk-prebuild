@@ -16,7 +16,8 @@ jobs:
           mkdir VTK-build
           cd VTK-build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=../VTK-out ../VTK-8.2.0
-          nmake install
+          cmake --build .
+          cmake --install .
           cd ../VTK-out
           7z a ../VTK-8.2.0-win.7z *
       - name: Upload

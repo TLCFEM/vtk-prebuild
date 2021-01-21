@@ -5,6 +5,31 @@ on:
   pull_request:
     branches: [master]
 jobs:
+  v82-win:
+    runs-on: windows-latest
+    steps:
+      - name: Compile
+        shell: bash
+        run: |
+          C:\msys64\usr\bin\wget.exe https://www.vtk.org/files/release/8.2/VTK-8.2.0.tar.gz
+          C:\msys64\usr\bin\tar.exe -xf VTK-8.2.0.tar.gz && rm VTK-8.2.0.tar.gz
+          C:\msys64\usr\bin\mkdir.exe VTK-build && cd VTK-build
+          cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=../VTK-out ../VTK-8.2.0
+          make install -j4
+          cd ../VTK-out && C:\msys64\usr\bin\tar.exe -cvzf ../VTK-8.2.0-win.tar.gz *
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          name: VTK-8.2.0-win
+          path: VTK-8.2.0-win.tar.gz
+      - name: Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: VTK-8.2.0-win.tar.gz
+          asset_name: VTK-8.2.0-win.tar.gz
+          tag: latest
+          overwrite: true
   v82-linux:
     runs-on: ubuntu-20.04
     steps:

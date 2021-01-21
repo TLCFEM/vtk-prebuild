@@ -11,14 +11,14 @@ jobs:
       - name: Compile
         run: |
           C:/msys64/usr/bin/wget.exe https://www.vtk.org/files/release/8.2/VTK-8.2.0.tar.gz
-          C:/msys64/usr/bin/tar.exe -xf VTK-8.2.0.tar.gz
-          C:/msys64/usr/bin/rm.exe VTK-8.2.0.tar.gz
-          C:/msys64/usr/bin/mkdir.exe VTK-build
+          tar -xf VTK-8.2.0.tar.gz
+          del VTK-8.2.0.tar.gz
+          dir VTK-build
           cd VTK-build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=../VTK-out ../VTK-8.2.0
           make install -j4
           cd ../VTK-out
-          C:/msys64/usr/bin/tar.exe -cvzf ../VTK-8.2.0-win.tar.gz *
+          tar -cvzf ../VTK-8.2.0-win.tar.gz *
       - name: Upload
         uses: actions/upload-artifact@v1
         with:

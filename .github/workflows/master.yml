@@ -18,18 +18,18 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=../VTK-out ../VTK-8.2.0
           make install -j4
           cd ../VTK-out
-          tar -cvzf ../VTK-8.2.0-win.tar.gz *
+          7z a ../VTK-8.2.0-win.7z *
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
           name: VTK-8.2.0-win
-          path: VTK-8.2.0-win.tar.gz
+          path: VTK-8.2.0-win.7z
       - name: Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: VTK-8.2.0-win.tar.gz
-          asset_name: VTK-8.2.0-win.tar.gz
+          file: VTK-8.2.0-win.7z
+          asset_name: VTK-8.2.0-win.7z
           tag: latest
           overwrite: true
   v82-linux:

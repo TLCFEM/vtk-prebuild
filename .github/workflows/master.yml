@@ -38,7 +38,7 @@ jobs:
     steps:
       - name: Compile
         run: |
-          sudo apt update && sudo apt install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+          sudo apt update && sudo apt upgrade -y && sudo apt install libglu1-mesa-dev freeglut3-dev mesa-common-dev
           wget https://www.vtk.org/files/release/8.2/VTK-8.2.0.tar.gz
           tar -xf VTK-8.2.0.tar.gz && rm VTK-8.2.0.tar.gz
           mkdir VTK-build && cd VTK-build
@@ -125,6 +125,7 @@ jobs:
           FC: gfortran-9
           HOSTCC: gcc-9
         run: |
+          sudo apt update && sudo apt upgrade -y
           wget https://github.com/xianyi/OpenBLAS/releases/download/v0.3.13/OpenBLAS-0.3.13.tar.gz
           tar -xf OpenBLAS-0.3.13.tar.gz && rm OpenBLAS-0.3.13.tar.gz && cd OpenBLAS-0.3.13
           sed -i 's/# DYNAMIC_ARCH = 1/DYNAMIC_ARCH = 1/g' Makefile.rule
@@ -137,7 +138,7 @@ jobs:
           sed -i 's/# NO_LAPACKE = 1/NO_LAPACKE = 1/g' Makefile.rule
           sed -i 's/# GEMM_MULTITHREAD_THRESHOLD = 4/GEMM_MULTITHREAD_THRESHOLD = 64/g' Makefile.rule
           make
-          tar -cvzf ../OpenBLAS-0.3.13-linux.tar.gz lib*.a
+          tar cvzf ../OpenBLAS-0.3.13-linux.tar.gz lib*.a
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
@@ -173,7 +174,7 @@ jobs:
           sed -i '~' 's/# NO_LAPACKE = 1/NO_LAPACKE = 1/g' Makefile.rule
           sed -i '~' 's/# GEMM_MULTITHREAD_THRESHOLD = 4/GEMM_MULTITHREAD_THRESHOLD = 64/g' Makefile.rule
           make
-          tar -cvzf ../OpenBLAS-0.3.13-macos.tar.gz lib*.a
+          tar cvzf ../OpenBLAS-0.3.13-macos.tar.gz lib*.a
       - name: Upload
         uses: actions/upload-artifact@v1
         with:

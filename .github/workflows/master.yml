@@ -8,6 +8,8 @@ jobs:
   hdf5-win:
     runs-on: windows-latest
     steps:
+      - name: Clone
+        uses: actions/checkout@v2
       - name: Compile
         run: |
           unzip CMake-hdf5-1.12.0.zip
@@ -29,6 +31,8 @@ jobs:
   hdf5-linux:
     runs-on: ubuntu-20.04
     steps:
+      - name: Clone
+        uses: actions/checkout@v2
       - name: Compile
         run: |
           tar -xf CMake-hdf5-1.12.0.tar.gz
@@ -50,6 +54,8 @@ jobs:
   hdf5-macos:
     runs-on: macos-latest
     steps:
+      - name: Clone
+        uses: actions/checkout@v2
       - name: Compile
         run: |
           tar -xf CMake-hdf5-1.12.0.tar.gz

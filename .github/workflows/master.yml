@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Compile
         run: |
-          tar -xf CMake-hdf5-1.12.0.tar.gz
+          tar xf CMake-hdf5-1.12.0.tar.gz
           cd CMake-hdf5-1.12.0
           ctest -S HDF5config.cmake,BUILD_GENERATOR=Unix -C Release -V -O hdf5.log
       - name: Upload
@@ -58,9 +58,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Compile
         run: |
-          tar -xf CMake-hdf5-1.12.0.tar.gz
+          tar xf CMake-hdf5-1.12.0.tar.gz
           cd CMake-hdf5-1.12.0
-          sed 's/#set (ADD_BUILD_OPTIONS "${ADD_BUILD_OPTIONS} -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=OFF")/set (ADD_BUILD_OPTIONS "${ADD_BUILD_OPTIONS} -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=OFF")/' HDF5options.cmake
+          sed -i 's/#set (ADD_BUILD_OPTIONS "${ADD_BUILD_OPTIONS} -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=OFF")/set (ADD_BUILD_OPTIONS "${ADD_BUILD_OPTIONS} -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=OFF")/' HDF5options.cmake
           ctest -S HDF5config.cmake,BUILD_GENERATOR=Unix -C Release -VV -O hdf5.log
           ls -al
   v82-win:
@@ -69,7 +69,7 @@ jobs:
       - name: Compile
         run: |
           C:/msys64/usr/bin/wget.exe https://www.vtk.org/files/release/8.2/VTK-8.2.0.tar.gz
-          tar -xf VTK-8.2.0.tar.gz
+          tar xf VTK-8.2.0.tar.gz
           del VTK-8.2.0.tar.gz
           mkdir VTK-build
           mkdir VTK-out
@@ -98,7 +98,7 @@ jobs:
         run: |
           sudo apt update && sudo apt upgrade -y && sudo apt install libglu1-mesa-dev freeglut3-dev mesa-common-dev
           wget https://www.vtk.org/files/release/8.2/VTK-8.2.0.tar.gz
-          tar -xf VTK-8.2.0.tar.gz && rm VTK-8.2.0.tar.gz
+          tar xf VTK-8.2.0.tar.gz && rm VTK-8.2.0.tar.gz
           mkdir VTK-build && cd VTK-build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=../VTK-out ../VTK-8.2.0
           sudo make install -j4
@@ -123,7 +123,7 @@ jobs:
         run: |
           sudo brew update && sudo brew install glfw3 glew
           wget https://www.vtk.org/files/release/8.2/VTK-8.2.0.tar.gz
-          tar -xf VTK-8.2.0.tar.gz && rm VTK-8.2.0.tar.gz
+          tar xf VTK-8.2.0.tar.gz && rm VTK-8.2.0.tar.gz
           mkdir VTK-build && cd VTK-build
           cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=../VTK-out ../VTK-8.2.0
           sudo make install -j4
@@ -185,7 +185,7 @@ jobs:
         run: |
           sudo apt update && sudo apt upgrade -y
           wget https://github.com/xianyi/OpenBLAS/releases/download/v0.3.15/OpenBLAS-0.3.15.tar.gz
-          tar -xf OpenBLAS-0.3.15.tar.gz && rm OpenBLAS-0.3.15.tar.gz && cd OpenBLAS-0.3.15
+          tar xf OpenBLAS-0.3.15.tar.gz && rm OpenBLAS-0.3.15.tar.gz && cd OpenBLAS-0.3.15
           sed -i 's/# DYNAMIC_ARCH = 1/DYNAMIC_ARCH = 1/g' Makefile.rule
           sed -i 's/# BINARY=64/BINARY=64/g' Makefile.rule
           sed -i 's/# USE_THREAD = 0/USE_THREAD = 1/g' Makefile.rule
@@ -221,7 +221,7 @@ jobs:
           RANLIB: ranlib
         run: |
           wget https://github.com/xianyi/OpenBLAS/releases/download/v0.3.15/OpenBLAS-0.3.15.tar.gz
-          tar -xf OpenBLAS-0.3.15.tar.gz && rm OpenBLAS-0.3.15.tar.gz && cd OpenBLAS-0.3.15
+          tar xf OpenBLAS-0.3.15.tar.gz && rm OpenBLAS-0.3.15.tar.gz && cd OpenBLAS-0.3.15
           sed -i '~' 's/# DYNAMIC_ARCH = 1/DYNAMIC_ARCH = 1/g' Makefile.rule
           sed -i '~' 's/# BINARY=64/BINARY=64/g' Makefile.rule
           sed -i '~' 's/# USE_THREAD = 0/USE_THREAD = 1/g' Makefile.rule

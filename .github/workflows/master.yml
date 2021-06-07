@@ -14,7 +14,7 @@ jobs:
         run: |
           unzip CMake-hdf5-1.12.0.zip
           cd CMake-hdf5-1.12.0
-          ctest -S HDF5config.cmake,BUILD_GENERATOR=VS201964 -C Release -V -O hdf5.log
+          ctest -S HDF5config.cmake,BUILD_GENERATOR=VS201964 -C Release -O hdf5.log
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
@@ -37,7 +37,7 @@ jobs:
         run: |
           tar xf CMake-hdf5-1.12.0.tar.gz
           cd CMake-hdf5-1.12.0
-          ctest -S HDF5config.cmake,BUILD_GENERATOR=Unix -C Release -V -O hdf5.log
+          ctest -S HDF5config.cmake,BUILD_GENERATOR=Unix -C Release -O hdf5.log
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
@@ -61,8 +61,20 @@ jobs:
           tar xf CMake-hdf5-1.12.0.tar.gz
           cd CMake-hdf5-1.12.0
           sed -i '' 's/#set (ADD_BUILD_OPTIONS "${ADD_BUILD_OPTIONS} -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=OFF")/set (ADD_BUILD_OPTIONS "${ADD_BUILD_OPTIONS} -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=OFF")/g' HDF5options.cmake
-          ctest -S HDF5config.cmake,BUILD_GENERATOR=Unix -C Release -VV -O hdf5.log
-          ls -al
+          ctest -S HDF5config.cmake,BUILD_GENERATOR=Unix -C Release -O hdf5.log
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          name: HDF5-1.12.0-Darwin
+          path: CMake-hdf5-1.12.0/HDF5-1.12.0-Darwin.tar.gz
+      - name: Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: CMake-hdf5-1.12.0/HDF5-1.12.0-Darwin.tar.gz
+          asset_name: HDF5-1.12.0-Darwin.tar.gz
+          tag: latest
+          overwrite: true
   v82-win:
     runs-on: windows-latest
     steps:
